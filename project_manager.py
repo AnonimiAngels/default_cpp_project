@@ -85,6 +85,8 @@ def generate_vscode_files():
 	if os.path.exists(tasks_file):
 		os.remove(tasks_file)
 
+	create_dir()
+
 	# Launch configuration for debugging
 	launch_config = {
 		"version": "0.2.0",
@@ -178,6 +180,8 @@ def generate_docs():
 	if not file_exists:
 		print("Doxyfile does not exist, skipping documentation generation.")
 		return
+
+	create_dir()
 
 	subprocess.run(["doxygen", "-q Doxyfile ./"], cwd=start_dir)
 	subprocess.run(["xdg-open", docs_dir + "/html/index.html"])
