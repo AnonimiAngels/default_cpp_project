@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+
+# Logs and databases
+*.log
+*.sql
+
+# Directories
+**/build
+**/bin
