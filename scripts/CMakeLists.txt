@@ -7,11 +7,23 @@ project(${PROJECT_NAME})
 collect_subdirectories(${PROJECT_DIR}/src SRC_DIRS)
 collect_subdirectories(${PROJECT_DIR}/inc INC_DIRS)
 
-file(GLOB_RECURSE PROJECT_SOURCES ${SRC_DIRS}/*.cpp ${SRC_DIRS}/*.c)
-file(GLOB_RECURSE PROJECT_HEADERS ${INC_DIRS}/*.hpp ${INC_DIRS}/*.h)
+# message(STATUS "Project src_dirs: ${SRC_DIRS}")
+# message(STATUS "Project inc_dirs: ${INC_DIRS}")
 
-message(STATUS "Project src_dirs: ${SRC_DIRS}")
-message(STATUS "Project inc_dirs: ${INC_DIRS}")
+# For each source directory, collect all source files
+foreach(SRC_DIR ${SRC_DIRS})
+	file(GLOB_RECURSE SRC_FILES ${SRC_DIR}/*.cpp ${SRC_DIR}/*.c)
+	list(APPEND PROJECT_SOURCES ${SRC_FILES})
+endforeach()
+
+# For each include directory, collect all header files
+foreach(INC_DIR ${INC_DIRS})
+	file(GLOB_RECURSE INC_FILES ${INC_DIR}/*.hpp ${INC_DIR}/*.h)
+	list(APPEND PROJECT_HEADERS ${INC_FILES})
+endforeach()
+
+# message(STATUS "Project sources: ${PROJECT_SOURCES}")
+# message(STATUS "Project headers: ${PROJECT_HEADERS}")
 
 find_package(spdlog REQUIRED)
 
