@@ -67,6 +67,8 @@ def generate_cmake_flags(build_type):
 	flags.extend(["-DCMAKE_INTERPROCEDURAL_OPTIMIZATION=ON"])
 	flags.extend(["-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"])
 
+	flags.extend(["-DCMAKE_CXX_COMPILER_CLANG_SCAN_DEPS=/usr/bin/clang-scan-deps-17"])
+
 	if build_type == "release":
 		flags.extend(["-DCMAKE_CXX_FLAGS=${CMAKE_CXX_FLAGS} -O3"])
 		flags.extend(["-DCMAKE_C_FLAGS=${CMAKE_C_FLAGS} -O3"])
@@ -225,6 +227,8 @@ def test_required():
 		print("Missing executables:")
 		for exe in missing_executables:
 			print(f"  - {exe}")
+
+		print("sudo apt update -y && sudo apt install -y desktop-file-utils cmake ninja-build clang clangd clang-tools-17 clang-tidy clang-format llvm doxygen graphviz gdb libspdlog-dev build-essential")
 
 		sys.exit(1)
 
