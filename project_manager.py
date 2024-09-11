@@ -112,7 +112,8 @@ def generate_vscode_files():
 					}
 				],
 				"preLaunchTask": "build",
-				"miDebuggerPath": "/usr/bin/gdb"
+				"miDebuggerPath": "/usr/bin/gdb",
+            			"miDebuggerArgs": "-q -ex quit; wait() { fg >/dev/null; }; /bin/gdb -q --interpreter=mi"
 			}
 		]
 	}
